@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Guess a number</title>
+	<style type="text/css">
+		
+		
+		
+
+		.container{
+			width: 600px;
+			max-width: 100%;
+			height: auto;
+			margin: auto;
+			text-align: center;
+			font-family: sans-serif;
+			background-color: rgb(238 238 238);
+			border-radius: 10px;
+		}
+
+		#title{
+			border: 3px solid;
+			border-radius: 5px;
+			max-width: 300px;
+			width: 100%;
+			margin:  auto;
+			background-color: white;
+		}
+
+		img{
+			margin-top: 3em;
+			border-radius: 10px;
+			margin-bottom: 3em
+		}
+
+		button{
+			border: solid 2px;
+			border-radius: 3px;
+			font-family: sans-serif;
+			font-size: .9em;
+			font-weight: bold;
+			background-color: white;
+			
+		}
+		
+
+
+
+	</style>
+
+</head>
+
+
+
+<div class="container">
+<body>
+	<br>
+	<div id="title">
+	<h1>Guess the number</h1>
+	</div>
+
+	<br><br><br>
+
+	<input type="number" name="number" id="userguess" placeholder="Enter number here..">
+	<button onclick="buttonClicked()" id="guessBtn">Click me!</button>
+	<button onclick="restartGame()" id="restartBtn" hidden="true">Restart</button>
+	<em><p id="message">"Good luck!"</p></em>
+
+	
+
+	<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FU2LPfvG9KvA%2Fhqdefault.jpg&f=1&nofb=1">
+
+</body>
+
+</div>
+<script type="text/javascript">
+
+		
+
+
+	
+  		var random = Math.ceil(Math.random()*100);
+		var chances = 5;
+		function buttonClicked(){
+		// Retrieved the value from the input with Id userguess
+
+
+		var userguess = document.getElementById("userguess").value
+
+		if(userguess > random){
+			
+			document.getElementById("message").innerHTML = '"Number too high"';
+			chances--
+
+		}
+		else if(userguess < random){
+			
+			document.getElementById("message").innerHTML = '"Number too low"';
+			chances--
+		}
+		else{
+			document.getElementById("message").innerHTML = '"You win!"' ;
+			document.getElementById("restartBtn").removeAttribute("hidden");			
+			document.getElementById("guessBtn").setAttribute("disabled",true);
+			document.getElementById("message").style.color = "green" ;
+
+		}
+		
+		if (chances <= 0){
+			document.getElementById("message").innerHTML = '\"You are out of chances! The number is : '+  random+ '"' ;
+			document.getElementById("restartBtn").removeAttribute("hidden");
+			document.getElementById("guessBtn").setAttribute("disabled",true);
+			document.getElementById("message").style.color = "red" ;
+
+		}
+		document.getElementById("userguess").value = ""
+	}
+
+		function restartGame(){
+
+	//reset chances
+			chances = 5;
+	//enable guess button
+			document.getElementById("guessBtn").removeAttribute("disabled")		
+	//generate new random number
+			random = Math.ceil(Math.random()*100);
+	//hide restart button
+			document.getElementById("restartBtn").setAttribute("hidden", true)
+	//clear the message
+			document.getElementById("message").innerHTML = "Good luck !"
+
+			document.getElementById("message").style.color = "black" ;
+
+					}
+
+
+
+</script>
+
+
+
+</html>

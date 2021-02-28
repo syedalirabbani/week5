@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Week 5 Notes</title>
+</head>
+<body>
+
+	<!------------------------ DOM MANIPULATION------------------------>
+
+	<h1>Dom Manipulation</h1>
+	<input type="text" id="nameInput">	
+	<button onclick="pressActivate()" id="deactivateBtn">Deactivate Button</button>
+	<button onclick="pressMe()" id="btnPress">Press me!</button>
+	<p id="message"></p>
+
+	<hr>
+
+	<!------------------------ TO DO LIST ------------------------------>
+
+	<h2>To do list</h2>
+	<input type="text" id="newtodo" placeholder="Add new to do">
+	<button onclick="addPress()">Add</button>
+	<ul id="itemList">
+		
+
+	</ul>
+	
+	<hr>
+	<!------------------------ ADDRESS BOOK----------------------------->
+	<h1>Address book</h1>
+	<input type="text" id="addressName" placeholder="Enter your name">
+	<input type="text" id="addressEmail" placeholder="Enter your email">
+	<input type="text" id="addressPhone" placeholder="Enter your phone">
+	<button onclick="addAddress()">Add address</button>
+	<table>
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Phone</th>
+		</tr>
+		</thead>
+		<tbody id="tableBody">
+			
+		</tbody>
+	</table>
+
+
+
+	<!------------------------ JAVA SCRIPT----------------------------->
+	<script type="text/javascript">
+
+// DOM MANIPULATION FUNCTION ------------------------------------------
+	
+	function pressMe(){
+		//When it is on the right side, it is a getter (get value from it)
+		var name = document.getElementById("nameInput").value;
+		alert("Hello "+name); 
+
+
+		document.getElementById("message").innerHTML = "Hello "+name
+		//if it is on the left, it is a setter (we set value into it)
+		document.getElementById("nameInput").value ="";
+
+	}
+
+
+	function pressActivate(){
+		 if(document.getElementById("btnPress").disabled == true){
+			document.getElementById("btnPress").removeAttribute("disabled")
+			document.getElementById("deactivateBtn").innerHTML = "Deactivate button"
+			}
+		else{
+			document.getElementById("btnPress").setAttribute("disabled", true);	
+			document.getElementById("deactivateBtn").innerHTML = "Activate button";
+			}
+		 }
+
+// TO DO LIST FUNCTION ------------------------------------------------
+	
+	function addPress(){
+// get the value from input
+		var newTodo = document.getElementById("newtodo").value;
+
+//create new element - li
+		var newLi = document.createElement("li");
+
+// inside li put innerhtml (1)
+		newLi.innerHTML = newTodo;	
+
+//append li to itemlist
+		document.getElementById("itemList").append(newLi);
+
+		}
+	
+
+			
+// ADDRESS BOOK FUNCTION ------------------------------------------------
+
+
+	function addAddress(){
+		// 1) get the value from input x 3
+		var name= document.getElementById("addressName").value;
+		var email= document.getElementById("addressEmail").value;
+		var phone= document.getElementById("addressPhone").value;
+		// 2) create new element - td x 3
+		var td1 = document.createElement("td");
+		var td2 = document.createElement("td");
+		var td3 = document.createElement("td");
+
+		// 3) inside td put innerhtml (1) x 3
+		td1.innerHTML = name;
+		td2.innerHTML = email;
+		td3.innerHTML = phone;
+
+		// 4) create tr
+
+		var newTr = document.createElement("tr");
+
+		// 5) append td to tr x3
+		newTr.appendChild(td1);
+		newTr.appendChild(td2);
+		newTr.appendChild(td3);
+
+
+		// 6) append tr to tbody
+		document.getElementById("tableBody").appendChild(newTr);
+
+
+
+	}
+
+
+</script>
+
+
+
+
+
+</body>
+
+</html>
+
